@@ -1,0 +1,14 @@
+{
+  "name": "cashout-calculator",
+  "version": "1.0.0",
+  "description": "A simple web app for calculating my nightly cashouts as a server. Built in PHP.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Connor Froese",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
