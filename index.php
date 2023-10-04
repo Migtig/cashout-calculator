@@ -9,6 +9,14 @@
 
 </head>
 <body class="h-screen">
+    <?php
+    if( isset( $_COOKIE["invalidCashout"] ) ) {
+        $cookieContents = $_COOKIE["invalidCashout"];
+        setcookie( "invalidCashout", "", time()-1 );
+    }
+
+    echo( "<p>$cookieContents</p>");
+    ?>
 
 <main class="h-full">
     <form action="form-processing.php" method="post" class="bg-gray-400 p-4 h-full">
@@ -16,23 +24,23 @@
             <legend class="font-bold text-2xl mb-8 mx-auto">Cashout Calculator</legend>
 
             <label for="sales" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Net Sales</label>
-            <input type="text" name="sales" id="sales" required 
+            <input type="text" name="sales" id="sales" inputmode="decimal" required 
             class="border-2 border-black mb-4 pl-2">
 
-            <label for="host-sales" class="text-xl font-semibold mb-1">Host Cut Sales</label>
-            <input type="text" name="host-sales" id="host-sales"  
+            <label for="host-sales" class="text-xl font-semibold mb-1">Sales @ Host Cut</label>
+            <input type="text" name="host-sales" id="host-sales" inputmode="decimal" 
             class="border-2 border-black mb-4 pl-2">
 
             <label for="food" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Food</label>
-            <input type="text" name="food" id="food" required 
+            <input type="text" name="food" id="food" inputmode="decimal" required 
             class="border-2 border-black mb-4 pl-2">
 
             <label for="cash" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Cash</label>
-            <input type="text" name="cash" id="cash" required 
+            <input type="text" name="cash" id="cash" inputmode="decimal" required 
             class="border-2 border-black mb-4 pl-2">
 
             <label for="tips" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Tips Paid</label>
-            <input type="text" name="tips" id="tips" required 
+            <input type="text" name="tips" id="tips" inputmode="decimal" required 
             class="border-2 border-black mb-4 pl-2">
         </fieldset>
 
