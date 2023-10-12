@@ -13,15 +13,19 @@
     if( isset( $_COOKIE["invalidCashout"] ) ) {
         $cookieContents = $_COOKIE["invalidCashout"];
         setcookie( "invalidCashout", "", time()-1 );
-    }
 
-    echo( "<p>$cookieContents</p>");
+        echo( "<p>$cookieContents</p>");
+    }
     ?>
 
 <main class="h-full">
     <form action="form-processing.php" method="post" class="bg-gray-400 p-4 h-full">
         <fieldset class="flex flex-col mb-8">
             <legend class="font-bold text-2xl mb-8 mx-auto">Cashout Calculator</legend>
+
+            <label for="emp-id" class="text-xl font-semibold mb-1">Employee ID</label>
+            <input type="text" name="emp-id" id="emp-id" inputmode="numeric"  
+            class="border-2 border-black mb-4 pl-2">
 
             <label for="sales" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Net Sales</label>
             <input type="text" name="sales" id="sales" inputmode="decimal" required 

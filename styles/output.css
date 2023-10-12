@@ -798,27 +798,6 @@ select {
   font-weight: 600;
 }
 
-.before\:mr-0::before {
-  content: var(--tw-content);
-  margin-right: 0px;
-}
-
-.before\:mr-0\.5::before {
-  content: var(--tw-content);
-  margin-right: 0.125rem;
-}
-
-.before\:text-red-500::before {
-  content: var(--tw-content);
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.before\:content-\[\'\$\'\]::before {
-  --tw-content: '$';
-  content: var(--tw-content);
-}
-
 .after\:ml-0::after {
   content: var(--tw-content);
   margin-left: 0px;
