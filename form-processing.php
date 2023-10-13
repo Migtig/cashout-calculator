@@ -122,7 +122,7 @@ if( !$empID ) {
 }
 
 // Otherwise, sends the user to a results page along with a confirmation of whether they would like to save their cashout to the database
-header( "location: results-save.php" );
+header( "location: results-save.php?netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&cash=$cash&tipsPaid=$tipsPaid" );
 die();
 ?>
 </body>
