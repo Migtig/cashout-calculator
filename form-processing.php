@@ -25,10 +25,14 @@ if( isset( $_POST["sales"] ) ) {
     }
     else {
         $cashoutValid = false;
+        $errorCookieData = "netsales numeric test";
+
     }
 }
 else {
     $cashoutValid = false;
+    $errorCookieData = "netsales set test";
+
 }
 
 // Checks and assigns variable for Food Sales
@@ -38,10 +42,14 @@ if( isset( $_POST["food"] ) ) {
     }
     else {
         $cashoutValid = false;
+        $errorCookieData = "food numeric test";
+
     }
 }
 else {
     $cashoutValid = false;
+    $errorCookieData = "food set test";
+
 }
 
 // Checks and assigns variable for Cash
@@ -51,12 +59,16 @@ if( isset( $_POST["cash"] ) ) {
     }
     else {
         $cashoutValid = false;
+        $errorCookieData = "cash";
+
     }
 }
-else {
-    $cashoutValid = false;
-}
+// else {
+//     $cashoutValid = false;
+// }
 
+// Since these are no longer required, I need to change the if statement to match the if statement for host sales
+// I am retarded
 // Checks and assigns variable for Tips Paid
 if( isset( $_POST["tips"] ) ) {
     if ( is_numeric( $_POST["tips"] ) ) {
@@ -64,13 +76,15 @@ if( isset( $_POST["tips"] ) ) {
     }
     else {
         $cashoutValid = false;
+        $errorCookieData = "tips";
+
     }
 }
-else {
-    $cashoutValid = false;
-}
+// else {
+//     $cashoutValid = false;
+// }
 
-// Checks and assigns variable for sales at time of host being cut
+// Checks for and assigns variable for sales at time of host being cut
 if( isset( $_POST["host-sales"] ) ) {
     if ( $_POST["host-sales"] != "" ) {
         if( is_numeric( $_POST["host-sales"] ) ) {
@@ -78,15 +92,32 @@ if( isset( $_POST["host-sales"] ) ) {
         }
         else {
             $cashoutValid = false;
+            $errorCookieData = "host-sales";
         }
     }
     else {
         $hostSales = null;
     }
 }
-else {
-    $cashoutValid = false;
-}
+// else {
+//     $cashoutValid = false;
+// }
+
+// Checks for and assigns variable for staff meal
+// if( isset( $_POST["meal"] ) ) {
+//     if ( $_POST["meal"] != "" ) {
+//         if( is_numeric( $_POST["meal"] ) ) {
+//             $staffMeal = $_POST["meal"];
+//         }
+//         else {
+//             $cashoutValid = false;
+//         }
+//     }
+//     else {
+//         $staffMeal = null;
+//     }
+// }
+
 
 if( isset( $_POST["emp-id"] ) ) {
     if ( $_POST["emp-id"] != "" ) {
@@ -102,9 +133,9 @@ if( isset( $_POST["emp-id"] ) ) {
         $empID = null;
     }
 }
-else {
-    $cashoutValid = false;
-}
+// else {
+//     $cashoutValid = false;
+// }
 
 // Checks if anything went wrong, and redirects the user back to the first page
 if( !$cashoutValid ) {
@@ -113,7 +144,7 @@ if( !$cashoutValid ) {
     die();
 }
 
-// Variables: netSales, foodSales, cash, tipsPaid, hostSales
+// Variables: netSales, foodSales, cash, tipsPaid, hostSales, staffMeal
 
 // If no employee ID was entered, sends user to the simple results page
 if( !$empID ) {
@@ -122,7 +153,7 @@ if( !$empID ) {
 }
 
 // Otherwise, sends the user to a results page along with a confirmation of whether they would like to save their cashout to the database
-header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&cash=$cash&tipsPaid=$tipsPaid" );
+header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&cash=$cash&tipsPaid=$tipsPaid&staffMeal=$staffMeal" );
 die();
 ?>
 </body>

@@ -14,6 +14,7 @@ $foodSales = $_GET["foodSales"];
 $hostSales = $_GET["hostSales"];
 $cash = $_GET["cash"];
 $tipsPaid = $_GET["tipsPaid"];
+$staffMeal = $_GET["staffMeal"];
 
 $date;
 
@@ -72,6 +73,12 @@ else{
 
     <div>
         <h2>Final Cashout</h2>
+        <?php
+        if( $staffMeal ) {
+            $cash = $cash - $staffMeal;
+            ?> <p>Note: The staff meal cost has been subtracted from the recorded cash amount.</p> <?php
+        }
+        ?>
         <p>Employee ID: <?php echo $empID; ?></p>
         <p>Date: <?php echo $date; ?></p>
         <ul>

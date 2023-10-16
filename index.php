@@ -49,7 +49,7 @@
 
             <div id="save-inputs" class="hidden">
                 <label for="cash" class="text-xl font-semibold mb-1 block">Cash</label>
-                <input type="text" name="cash" id="cash" inputmode="decimal" required 
+                <input type="text" name="cash" id="cash" inputmode="decimal" 
                 class="border-2 border-black mb-4 pl-2 block w-full">
 
                 <label for="tips" class="text-xl font-semibold mb-1 block">Tips Paid</label>
