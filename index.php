@@ -16,8 +16,6 @@
 
         echo( "<p>$cookieContents</p>");
     }
-
-    echo date("Y-m-d");
     ?>
 
 <main class="h-full">

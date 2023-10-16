@@ -8,16 +8,26 @@
 </head>
 <body>
 <?php
+$empID = $_GET["empID"];
 $netSales = $_GET["netSales"];
 $foodSales = $_GET["foodSales"];
 $hostSales = $_GET["hostSales"];
 $cash = $_GET["cash"];
 $tipsPaid = $_GET["tipsPaid"];
 
+$date;
+
+if(date("G") > 3) {
+    $date = date("m-d-Y");
+}
+else{
+    $date = ( date("m") . "-" . (date("d") - 1) . "-" . date("Y") );
+}
+
 ?>
 <main>
     <div>
-        <h2>Cashout Results - <?php echo date("m-d-Y"); ?></h2>
+        <h2>Cashout Results - <?php echo $date; ?></h2>
 
 
         <h3>Host:</h3>
@@ -54,11 +64,23 @@ $tipsPaid = $_GET["tipsPaid"];
         <h3>Total:</h3>
         <p>
             <?php
-            echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $" . $hostTipout + $kitchenTipout + $barTipout );
+            $totalTipout = $hostTipout + $kitchenTipout + $barTipout;
+            echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $$totalTipout" );
             ?>
         </p>
+    </div>
 
-
+    <div>
+        <h2>Final Cashout</h2>
+        <p>Employee ID: <?php echo $empID; ?></p>
+        <p>Date: <?php echo $date; ?></p>
+        <ul>
+            <li>Sales: <?php echo $netSales; ?></li>
+            <li>Food: <?php echo $foodSales; ?></li>
+            <li>Tipout: <?php echo $totalTipout; ?></li>
+            <li>Cash: <?php echo $cash; ?></li>
+            <li>Tips: <?php echo $tipsPaid; ?></li>
+        </ul>
     </div>
     <a href="index.php">Back to start</a>
 
