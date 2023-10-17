@@ -17,20 +17,19 @@ $hostSales = $_GET["hostSales"];
     <div>
         <h2>Cashout Results</h2>
 
-        <h3>Host:</h3>
-        <p>
-            <?php 
-            if( isset( $hostSales ) ) {
-                $hostTipout = $hostSales * 0.01;
-                echo( "$$hostSales x 1% = $" . $hostTipout );
-            } 
-            else {
-                $hostTipout = $netSales * 0.01;
-                echo( "$$netSales x 1% = $" . $hostTipout );
-            }
-            
+        <?php
+        if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
             ?>
-        </p>
+            <h3>Host:</h3>
+            <p>
+                <?php 
+                $hostTipout = $hostSales * 0.01;
+                echo( "$$hostSales x 1% = $" . $hostTipout );   
+                ?>
+            </p>
+            <?php
+        }
+        ?>
 
         <h3>Kitchen:</h3>
         <p>
@@ -51,7 +50,12 @@ $hostSales = $_GET["hostSales"];
         <h3>Total:</h3>
         <p>
             <?php
-            echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $" . $hostTipout + $kitchenTipout + $barTipout );
+            if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
+                echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $" . $hostTipout + $kitchenTipout + $barTipout );
+            }
+            else {
+                echo( "$$kitchenTipout + $$barTipout = $" . $kitchenTipout + $barTipout );
+            }
             ?>
         </p>
 
