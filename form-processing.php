@@ -16,126 +16,91 @@ $cashoutValid = true;
 // Default error message to be sent back if something goes wrong. Can be overwritten for a specific error
 $errorCookieData = "You entered some data incorrectly :/ Please try again!";
 
-
-
+// NET SALES
 // Checks and assigns variable for Net Sales
-if( isset( $_POST["sales"] ) ) {
-    if ( is_numeric( $_POST["sales"] ) ) {
-        $netSales = $_POST["sales"];
-    }
-    else {
-        $cashoutValid = false;
-        $errorCookieData = "netsales numeric test";
-
-    }
-}
-else {
+if( isset( $_POST["sales"] ) && is_numeric( $_POST["sales"] ) ) {
+    $netSales = $_POST["sales"];
+} else {
     $cashoutValid = false;
-    $errorCookieData = "netsales set test";
-
 }
 
+// FOOD SALES
 // Checks and assigns variable for Food Sales
-if( isset( $_POST["food"] ) ) {
-    if ( is_numeric( $_POST["food"] ) ) {
-        $foodSales = $_POST["food"];
-    }
-    else {
-        $cashoutValid = false;
-        $errorCookieData = "food numeric test";
-
-    }
-}
-else {
+if( isset( $_POST["food"] ) && is_numeric( $_POST["food"] ) ) {
+    $foodSales = $_POST["food"];
+} else {
     $cashoutValid = false;
-    $errorCookieData = "food set test";
-
 }
 
-// Checks and assigns variable for Cash
-if( isset( $_POST["cash"] ) ) {
-    if ( is_numeric( $_POST["cash"] ) ) {
-        $cash = $_POST["cash"];
-    }
-    else {
+// HOST CHECK?
+// If user had a host for their shift, checks and assigns variable for Host Sales
+if( isset( $_POST["hostcheck"] ) ) {
+
+    // HOST SALES
+    // Checks and assigns variable for Host Sales
+    if( isset( $_POST["hostsales"] ) && is_numeric( $_POST["hostsales"] ) ) {
+        $hostSales = $_POST["hostsales"];
+    } else {
+        $errorCookieData = "Please enter your sales made while a host was on the clock.";
         $cashoutValid = false;
-        $errorCookieData = "cash";
-
     }
-}
-// else {
-//     $cashoutValid = false;
-// }
 
-// Since these are no longer required, I need to change the if statement to match the if statement for host sales
-// I am retarded
-// Checks and assigns variable for Tips Paid
-if( isset( $_POST["tips"] ) ) {
-    if ( is_numeric( $_POST["tips"] ) ) {
+} 
+
+// SAVE CHECK?
+// If user wants to save their cashout, checks and assigns other variables.
+if( isset( $_POST["savecheck"] ) ) {
+
+    // TIPS PAID
+    // Checks and assigns variable for Tips Paid
+    if( isset( $_POST["tips"] ) && is_numeric( $_POST["tips"] ) ) {
         $tipsPaid = $_POST["tips"];
-    }
-    else {
+    } else {
+        $errorCookieData = "Please enter Tips Paid, as printed on your cashout report.";
         $cashoutValid = false;
-        $errorCookieData = "tips";
-
     }
-}
-// else {
-//     $cashoutValid = false;
-// }
 
-// Checks for and assigns variable for sales at time of host being cut
-if( isset( $_POST["host-sales"] ) ) {
-    if ( $_POST["host-sales"] != "" ) {
-        if( is_numeric( $_POST["host-sales"] ) ) {
-            $hostSales = $_POST["host-sales"];
-        }
-        else {
-            $cashoutValid = false;
-            $errorCookieData = "host-sales";
-        }
+    // CASH - REPORTED
+    // Checks and assigns variable for Cash - Reported
+    if( isset( $_POST["cashreported"] ) && is_numeric( $_POST["cashreported"] ) ) {
+        $cashReported = $_POST["cashreported"];
+    } else {
+        $errorCookieData = "Please enter Cash, as printed on your cashout report.";
+        $cashoutValid = false;
     }
-    else {
-        $hostSales = null;
+
+    // CASH - ACTUAL
+    // Checks and assigns variable for Cash - Actual
+    if( isset( $_POST["cashactual"] ) && is_numeric( $_POST["cashactual"] ) ) {
+        $cashActual = $_POST["cashactual"];
+    } else {
+        $errorCookieData = "Please enter the amount of real cash you have, minus your original float.";
+        $cashoutValid = false;
     }
-}
-// else {
-//     $cashoutValid = false;
-// }
 
-// Checks for and assigns variable for staff meal
-// if( isset( $_POST["meal"] ) ) {
-//     if ( $_POST["meal"] != "" ) {
-//         if( is_numeric( $_POST["meal"] ) ) {
-//             $staffMeal = $_POST["meal"];
-//         }
-//         else {
-//             $cashoutValid = false;
-//         }
-//     }
-//     else {
-//         $staffMeal = null;
-//     }
-// }
-
-
-if( isset( $_POST["emp-id"] ) ) {
-    if ( $_POST["emp-id"] != "" ) {
-        if( is_numeric( $_POST["emp-id"] ) && ( strlen( $_POST["emp-id"] ) == 4 ) ) {
-            $empID = $_POST["emp-id"];
-        }
-        else {
-            $cashoutValid = false;
-            $errorCookieData = "If you enter an employee ID, it should match the following format: 1234";
-        }
+    // EMPLOYEE ID
+    // Checks and assigns variable for Employee ID
+    if( isset( $_POST["emp-id"] ) && is_numeric( $_POST["emp-id"] ) && ( strlen( $_POST["emp-id"] ) == 4 ) ) {
+        $empID = $_POST["emp-id"];
     }
     else {
-        $empID = null;
+        $errorCookieData = "Your Employee ID should match the following format: 1234";
+        $cashoutValid = false;
+    }
+
+    // STAFF MEAL CHECK?
+    if( isset( $_POST["staffmealcheck"] ) ) {
+
+        // STAFF MEAL
+        // Checks and assigns variable for Staff Meal amount
+        if( isset( $_POST["staffmeal"] ) && is_numeric( $_POST["staffmeal"] ) ) {
+            $staffMeal = $_POST["staffmeal"];
+        } else {
+            $errorCookieData = "Please enter the amount you spent on on-shift personal food.";
+            $cashoutValid = false;
+        }
     }
 }
-// else {
-//     $cashoutValid = false;
-// }
 
 // Checks if anything went wrong, and redirects the user back to the first page
 if( !$cashoutValid ) {
@@ -144,16 +109,16 @@ if( !$cashoutValid ) {
     die();
 }
 
-// Variables: netSales, foodSales, cash, tipsPaid, hostSales, staffMeal
+// Variables: netSales, foodSales, hostSales, tipsPaid, cashReported, cashActual, empID, staffMeal
 
-// If no employee ID was entered, sends user to the simple results page
-if( !$empID ) {
+// If the Save box wasn't checked, directs user to results-nosave.php for their simple results (Tipout calculation only)
+if( !isset( $_POST["savecheck"] ) ) {
     header( "location: results-nosave.php?netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales" );
     die();
 }
 
-// Otherwise, sends the user to a results page along with a confirmation of whether they would like to save their cashout to the database
-header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&cash=$cash&tipsPaid=$tipsPaid&staffMeal=$staffMeal" );
+// Otherwise, sends the user to results-save.php for a full accounting and a confirmation of whether they'd like to save.
+header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&tipsPaid=$tipsPaid&cashReported=$cashReported&cashActual=$cashActual&staffMeal=$staffMeal" );
 die();
 ?>
 </body>

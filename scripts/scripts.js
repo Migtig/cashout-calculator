@@ -1,10 +1,34 @@
+const hostsales = document.getElementById('hostsales-amount')
+const hostsalesSelect = document.getElementById('hostcheck')
+
+const save = document.getElementById('save-inputs')
+const saveSelect = document.getElementById('savecheck')
+
 const staffmeal = document.getElementById('staffmeal-amount')
-const staffmealSelect = document.getElementById('staffmeal')
+const staffmealSelect = document.getElementById('staffmealcheck')
 
-const saveInputs = document.getElementById('save-inputs')
-const saveSelectYes = document.getElementById('save-select-yes')
-const saveSelectNo = document.getElementById('save-select-no')
 
+// Show/Hide Host Sales input box
+hostsalesSelect.addEventListener('change', function() {
+    if (this.checked) {
+        hostsales.style.display = 'block';
+    }
+    else {
+        hostsales.style.display = 'none';
+    }
+})
+
+// Show/Hide Saved Stats Inputs
+saveSelect.addEventListener('change', function() {
+    if (this.checked) {
+        save.style.display = 'block';
+    }
+    else {
+        save.style.display = 'none';
+    }
+})
+
+// Show/Hide Staff Meal input box
 staffmealSelect.addEventListener('change', function() {
     if (this.checked) {
         staffmeal.style.display = 'block';
@@ -14,14 +38,4 @@ staffmealSelect.addEventListener('change', function() {
     }
 })
 
-saveSelectNo.addEventListener('change', function() {
-    if (this.checked) {
-        saveInputs.style.display = 'none';
-    }
-})
 
-saveSelectYes.addEventListener('change', function() {
-    if (this.checked) {
-        saveInputs.style.display = 'block';
-    }
-})

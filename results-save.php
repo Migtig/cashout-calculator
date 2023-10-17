@@ -79,6 +79,38 @@ else{
             ?> <p>Note: The staff meal cost has been subtracted from the recorded cash amount.</p> <?php
         }
         ?>
+        <form action="save-processing.php" method="post">
+            <fieldset>
+                <label for="empID">Employee ID: </label>
+                <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+
+                <label for="date">Date: </label>
+                <input type="text" name="date" id="date" value="<?php echo $date; ?>" readonly>
+
+                <ul>
+                    <li>
+                        <label for="sales">Net Sales: </label>
+                        <input type="text" name="sales" id="sales" value="<?php echo $netSales; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="empID">Food Sales: </label>
+                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="empID">Tipout: </label>
+                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="empID">Employee ID: </label>
+                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="empID">Employee ID: </label>
+                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
         <p>Employee ID: <?php echo $empID; ?></p>
         <p>Date: <?php echo $date; ?></p>
         <ul>

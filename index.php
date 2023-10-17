@@ -24,50 +24,58 @@
         <fieldset class="flex flex-col mb-8">
             <legend class="font-bold text-2xl mb-8 mx-auto">Cashout Calculator</legend>
 
+            <!-- Net Sales -->
             <label for="sales" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Net Sales</label>
             <input type="text" name="sales" id="sales" inputmode="decimal" required 
             class="border-2 border-black mb-4 pl-2">
 
-            <label for="host-sales" class="text-xl font-semibold mb-1">Sales @ Host Cut</label>
-            <input type="text" name="host-sales" id="host-sales" inputmode="decimal" 
-            class="border-2 border-black mb-4 pl-2">
-
+            <!-- Food Sales -->
             <label for="food" class="text-xl font-semibold mb-1 after:content-['*'] after:ml-0.5 after:text-red-500">Food Sales</label>
             <input type="text" name="food" id="food" inputmode="decimal" required 
             class="border-2 border-black mb-4 pl-2">
 
-            <fieldset class="mb-4">
-                <label class="text-xl font-semibold mb-1 block">Would you like to save this cashout?</label>
+            <!-- Had host? -->
+            <label for="hostcheck" class="text-xl font-semibold mb-1 block">Did you have a host?</label>
+            <input type="checkbox" name="hostcheck" id="hostcheck" class="block mb-4">
 
-                <input type="radio" name="save-select" id="save-select-yes" value="true" class="inline-block">
-                <label for="save-select-yes" class="inline-block mr-4">Yes</label>
-
-                <input type="radio" name="save-select" id="save-select-no" value="false" class="inline-block" checked>
-                <label for="save-select-no" class="inline-block">No</label>
-            </fieldset>
-
-
-            <div id="save-inputs" class="hidden">
-                <label for="cash" class="text-xl font-semibold mb-1 block">Cash</label>
-                <input type="text" name="cash" id="cash" inputmode="decimal" 
-                class="border-2 border-black mb-4 pl-2 block w-full">
-
-                <label for="tips" class="text-xl font-semibold mb-1 block">Tips Paid</label>
-                <input type="text" name="tips" id="tips" inputmode="decimal" 
-                class="border-2 border-black mb-4 pl-2 block w-full">
-
-                <label for="staffmeal" class="text-xl font-semibold mb-1 block">Order food during your shift?</label>
-                <input type="checkbox" name="staffmeal" id="staffmeal" class="block mb-4">
-
-                <div id="staffmeal-amount" class="hidden">
-                    <label for="meal" class="text-xl font-semibold mb-1 block">Personal Food</label>
-                    <input type="text" name="meal" id="meal" inputmode="decimal" 
-                    class="border-2 border-black mb-4 pl-2 w-full">
+                <!-- OPTIONAL - Host Sales -->
+                <div id="hostsales-amount" class="hidden">
+                    <label for="hostsales" class="text-xl font-semibold mb-1">Host Sales</label>
+                    <input type="text" name="hostsales" id="hostsales" inputmode="decimal" class="border-2 border-black mb-4 pl-2">
                 </div>
 
+            <!-- Want to save? -->
+            <label for="savecheck" class="text-xl font-semibold mb-1 block">Would you like to save this cashout?</label>
+            <input type="checkbox" name="savecheck" id="savecheck" class="block mb-4">
+
+            <!-- OPTIONAL - Saved Stats -->
+            <div id="save-inputs" class="hidden">
+
+                <!-- Tips Paid -->
+                <label for="tips" class="text-xl font-semibold mb-1 block">Tips Paid</label>
+                <input type="text" name="tips" id="tips" inputmode="decimal" class="border-2 border-black mb-4 pl-2 block w-full">
+
+                <!-- Reported Cash -->
+                <label for="cashreported" class="text-xl font-semibold mb-1 block">Cash - Reported</label>
+                <input type="text" name="cashreported" id="cashreported" inputmode="decimal" class="border-2 border-black mb-4 pl-2 block w-full">
+
+                <!-- Actual Cash -->
+                <label for="cashactual" class="text-xl font-semibold mb-1 block">Cash - Actual</label>
+                <input type="text" name="cashactual" id="cashactual" inputmode="decimal" class="border-2 border-black mb-4 pl-2 block w-full">
+
+                <!-- Ordered personal food? -->
+                <label for="staffmealcheck" class="text-xl font-semibold mb-1 block">Order food during your shift?</label>
+                <input type="checkbox" name="staffmealcheck" id="staffmealcheck" class="block mb-4">
+
+                    <!-- OPTIONAL - Staff Meal Cost -->
+                    <div id="staffmeal-amount" class="hidden">
+                        <label for="staffmeal" class="text-xl font-semibold mb-1 block">Personal Food</label>
+                        <input type="text" name="staffmeal" id="staffmeal" inputmode="decimal" class="border-2 border-black mb-4 pl-2 w-full">
+                    </div>
+
+                <!-- Employee ID -->
                 <label for="emp-id" class="text-xl font-semibold mb-1 block">Employee ID</label>
-                <input type="text" name="emp-id" id="emp-id" inputmode="numeric"  
-                class="border-2 border-black mb-4 pl-2 block w-full">
+                <input type="text" name="emp-id" id="emp-id" inputmode="numeric" class="border-2 border-black mb-4 pl-2 block w-full">
 
             </div>
 
