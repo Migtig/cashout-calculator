@@ -73,6 +73,23 @@
                         <input type="text" name="staffmeal" id="staffmeal" inputmode="decimal" class="border-2 border-black mb-4 pl-2 w-full">
                     </div>
 
+                <!-- Had transfers? -->
+                <label for="transfercheck" class="text-xl font-semibold mb-1 block">Did you transfer tables in or out during your shift?</label>
+                <input type="checkbox" name="transfercheck" id="transfercheck" class="block mb-4">
+
+                    <!-- OPTIONAL - Transfers -->
+                    <div id="transfer-amount" class="hidden">
+
+                        <!-- Transfers In -->
+                        <label for="transfersin" class="text-xl font-semibold mb-1 block">Transfers In</label>
+                        <input type="text" name="transfersin" id="transfersin" inputmode="decimal" value="0" class="border-2 border-black mb-4 pl-2 w-full">
+
+                        <!-- Transfers Out -->
+                        <label for="transfersout" class="text-xl font-semibold mb-1 block">Transfers Out</label>
+                        <input type="text" name="transfersout" id="transfersout" inputmode="decimal" value="0" class="border-2 border-black mb-4 pl-2 w-full">
+
+                    </div>
+
                 <!-- Employee ID -->
                 <label for="emp-id" class="text-xl font-semibold mb-1 block">Employee ID</label>
                 <input type="text" name="emp-id" id="emp-id" inputmode="numeric" class="border-2 border-black mb-4 pl-2 block w-full">

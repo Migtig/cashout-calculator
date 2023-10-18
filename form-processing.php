@@ -82,8 +82,7 @@ if( isset( $_POST["savecheck"] ) ) {
     // Checks and assigns variable for Employee ID
     if( isset( $_POST["emp-id"] ) && is_numeric( $_POST["emp-id"] ) && ( strlen( $_POST["emp-id"] ) == 4 ) ) {
         $empID = $_POST["emp-id"];
-    }
-    else {
+    } else {
         $errorCookieData = "Your Employee ID should match the following format: 1234";
         $cashoutValid = false;
     }
@@ -99,6 +98,30 @@ if( isset( $_POST["savecheck"] ) ) {
             $errorCookieData = "Please enter the amount you spent on on-shift personal food.";
             $cashoutValid = false;
         }
+    }
+
+    // TRANSFER CHECK?
+    if( isset( $_POST["transfercheck"] ) ) {
+
+        // TRANSFERS IN
+        // Checks and assigns variable for amount Transferred In from other servers
+        if( isset( $_POST["transfersin"] ) && is_numeric( $_POST["transfersin"] ) ) {
+            $transfersIn = $_POST["transfersin"];
+        } else {
+            $errorCookieData = "Please enter the total amount transferred into you from other servers.";
+            $cashoutValid = false;
+        }
+
+        // TRANSFERS OUT
+        // Checks and assigns variable for amount Transferred Out to other servers
+        if( isset( $_POST["transfersout"] ) && is_numeric( $_POST["transfersout"] ) ) {
+            $transfersOut = $_POST["transfersout"];
+        } else {
+            $errorCookieData = "Please enter the total amount transferred out from you to other servers.";
+            $cashoutValid = false;
+        }
+
+        $netTransfer = $transfersIn - $transfersOut;
     }
 }
 
@@ -118,7 +141,7 @@ if( !isset( $_POST["savecheck"] ) ) {
 }
 
 // Otherwise, sends the user to results-save.php for a full accounting and a confirmation of whether they'd like to save.
-header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&tipsPaid=$tipsPaid&cashReported=$cashReported&cashActual=$cashActual&staffMeal=$staffMeal" );
+header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&tipsPaid=$tipsPaid&cashReported=$cashReported&cashActual=$cashActual&staffMeal=$staffMeal&netTransfer=$netTransfer" );
 die();
 ?>
 </body>

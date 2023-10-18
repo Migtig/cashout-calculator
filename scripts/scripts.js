@@ -7,6 +7,9 @@ const saveSelect = document.getElementById('savecheck')
 const staffmeal = document.getElementById('staffmeal-amount')
 const staffmealSelect = document.getElementById('staffmealcheck')
 
+const transfer = document.getElementById('transfer-amount')
+const transferSelect = document.getElementById('transfercheck')
+
 
 // Show/Hide Host Sales input box
 hostsalesSelect.addEventListener('change', function() {
@@ -35,6 +38,16 @@ staffmealSelect.addEventListener('change', function() {
     }
     else {
         staffmeal.style.display = 'none';
+    }
+})
+
+// Show/Hide Staff Meal input box
+transferSelect.addEventListener('change', function() {
+    if (this.checked) {
+        transfer.style.display = 'block';
+    }
+    else {
+        transfer.style.display = 'none';
     }
 })
 

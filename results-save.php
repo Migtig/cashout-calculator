@@ -16,6 +16,7 @@ $cashReported = $_GET["cashReported"];
 $cashActual = $_GET["cashActual"];
 $tipsPaid = $_GET["tipsPaid"];
 $staffMeal = $_GET["staffMeal"];
+$netTransfer = $_GET["netTransfer"];
 
 $date;
 
@@ -80,10 +81,19 @@ else{
     <div>
         <h2>Final Cashout</h2>
         <?php
+
+        $estRemit = $tipsPaid - ($cashReported + $totalTipout);
+
         if( is_numeric( $staffMeal ) ) {
             $cashReported = $cashReported - $staffMeal;
             ?> <p>Note: The staff meal cost has been subtracted from the recorded cash amount.</p> <?php
         }
+
+        $totalTips = ($tipsPaid - ( round($netTransfer * 0.1, 2) ) ) + ($cashActual - $cashReported);
+
+        $tipPercentage = round(($tipsPaid / $netSales) * 100, 1);
+        
+
         ?>
         <form action="save-processing.php" method="post">
             <fieldset>
@@ -95,37 +105,49 @@ else{
 
                 <ul>
                     <li>
-                        <label for="sales">Net Sales: </label>
-                        <input type="text" name="sales" id="sales" value="<?php echo $netSales; ?>" readonly>
+                        <label for="netSales">Net Sales: </label>
+                        <input type="text" name="netSales" id="netSales" value="<?php echo $netSales; ?>" readonly>
                     </li>
                     <li>
-                        <label for="empID">Food Sales: </label>
-                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                        <label for="foodSales">Food Sales: </label>
+                        <input type="text" name="foodSales" id="foodSales" value="<?php echo $foodSales; ?>" readonly>
                     </li>
                     <li>
-                        <label for="empID">Tipout: </label>
-                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                        <label for="tipout">Tipout: </label>
+                        <input type="text" name="tipout" id="tipout" value="<?php echo $totalTipout; ?>" readonly>
                     </li>
                     <li>
-                        <label for="empID">Employee ID: </label>
-                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                        <label for="tipsPaid">Reported Tips: </label>
+                        <input type="text" name="tipsPaid" id="tipsPaid" value="<?php echo $tipsPaid; ?>" readonly>
                     </li>
                     <li>
-                        <label for="empID">Employee ID: </label>
-                        <input type="text" name="empID" id="empID" value="<?php echo $empID; ?>" readonly>
+                        <label for="totalTips">Total Tips: </label>
+                        <input type="text" name="totalTips" id="totalTips" value="<?php echo $totalTips; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="tipPercent">Tip %: </label>
+                        <input type="text" name="tipPercent" id="tipPercent" value="<?php echo $tipPercentage; ?>%" readonly>
+                    </li>
+                    <li>
+                        <label for="cashReported">Cash - Reported: </label>
+                        <input type="text" name="cashReported" id="cashReported" value="<?php echo $cashReported; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="cashActual">Cash - Actual: </label>
+                        <input type="text" name="cashActual" id="cashActual" value="<?php echo $cashActual; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="estRemit">Estimated Real Remit: </label>
+                        <input type="text" name="estRemit" id="estRemit" value="<?php echo $estRemit; ?>" readonly>
+                    </li>
+                    <li>
+                        <label for="netTransfer">Net Transfers: </label>
+                        <input type="text" name="netTransfer" id="netTransfer" value="<?php echo $netTransfer; ?>" readonly>
                     </li>
                 </ul>
             </fieldset>
         </form>
-        <p>Employee ID: <?php echo $empID; ?></p>
-        <p>Date: <?php echo $date; ?></p>
-        <ul>
-            <li>Sales: <?php echo $netSales; ?></li>
-            <li>Food: <?php echo $foodSales; ?></li>
-            <li>Tipout: <?php echo $totalTipout; ?></li>
-            <li>Cash: <?php echo $cash; ?></li>
-            <li>Tips: <?php echo $tipsPaid; ?></li>
-        </ul>
+
     </div>
     <a href="index.php">Back to start</a>
 
