@@ -47,8 +47,8 @@ if( isset( $_POST["hostcheck"] ) ) {
 
 } 
 
-// SAVE CHECK?
-// If user wants to save their cashout, checks and assigns other variables.
+// FULL CASHOUT CHECK?
+// If user wants to view their full cashout, checks and assigns other variables.
 if( isset( $_POST["savecheck"] ) ) {
 
     // TIPS PAID
@@ -134,14 +134,14 @@ if( !$cashoutValid ) {
 
 // Variables: netSales, foodSales, hostSales, tipsPaid, cashReported, cashActual, empID, staffMeal
 
-// If the Save box wasn't checked, directs user to results-nosave.php for their simple results (Tipout calculation only)
+// If the Full Cashout box wasn't checked, directs user to results-simple.php for their simple results (Tipout calculation only)
 if( !isset( $_POST["savecheck"] ) ) {
-    header( "location: results-nosave.php?netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales" );
+    header( "location: results-simple.php?netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales" );
     die();
 }
 
-// Otherwise, sends the user to results-save.php for a full accounting and a confirmation of whether they'd like to save.
-header( "location: results-save.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&tipsPaid=$tipsPaid&cashReported=$cashReported&cashActual=$cashActual&staffMeal=$staffMeal&netTransfer=$netTransfer" );
+// Otherwise, sends the user to results-full.php for a full accounting and a confirmation of whether they'd like to save.
+header( "location: results-full.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&tipsPaid=$tipsPaid&cashReported=$cashReported&cashActual=$cashActual&staffMeal=$staffMeal&netTransfer=$netTransfer" );
 die();
 ?>
 </body>

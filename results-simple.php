@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cashout Results</title>
+    <title>Cashout Results - Simple</title>
+    <link rel="stylesheet" href="styles/output.css">
 </head>
-<body>
+<body class="h-screen bg-gray-400">
 <?php
 $netSales = $_GET["netSales"];
 $foodSales = $_GET["foodSales"];
@@ -14,14 +15,14 @@ $hostSales = $_GET["hostSales"];
 
 ?>
 <main>
-    <div>
-        <h2>Cashout Results</h2>
+    <div class="p-4">
+        <h2 class="font-bold text-2xl mb-4 mx-auto text-center px-4">Cashout Results</h2>
 
         <?php
         if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
             ?>
-            <h3>Host:</h3>
-            <p>
+            <h3 class="text-xl font-semibold">Host:</h3>
+            <p class="mb-3 text-lg">
                 <?php 
                 $hostTipout = round($hostSales * 0.01, 2);
                 echo( "$$hostSales x 1% = $" . $hostTipout );   
@@ -31,24 +32,24 @@ $hostSales = $_GET["hostSales"];
         }
         ?>
 
-        <h3>Kitchen:</h3>
-        <p>
+        <h3 class="text-xl font-semibold">Kitchen:</h3>
+        <p class="mb-3 text-lg">
             <?php
             $kitchenTipout = round($foodSales * 0.05, 2);
             echo( "$$foodSales x 5% = $" . $kitchenTipout );
             ?>
         </p>
 
-        <h3>Bar:</h3>
-        <p>
+        <h3 class="text-xl font-semibold">Bar:</h3>
+        <p class="mb-3 text-lg">
             <?php
             $barTipout = round($netSales * 0.02, 2);
             echo( "$$netSales x 2% = $" . $barTipout );
             ?>
         </p>
 
-        <h3>Total:</h3>
-        <p>
+        <h3 class="text-xl font-semibold">Total:</h3>
+        <p class="mb-3 text-lg">
             <?php
             if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
                 echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $" . $hostTipout + $kitchenTipout + $barTipout );

@@ -9,7 +9,7 @@
     <script src="scripts/scripts.js" defer></script>
 
 </head>
-<body class="h-screen">
+<body class="h-screen bg-gray-400">
     <?php
     if( isset( $_COOKIE["invalidCashout"] ) ) {
         $cookieContents = $_COOKIE["invalidCashout"];
@@ -20,7 +20,7 @@
     ?>
 
 <main class="h-full">
-    <form action="form-processing.php" method="post" class="bg-gray-400 p-4 h-full">
+    <form action="form-processing.php" method="post" class="p-4 h-full">
         <fieldset class="flex flex-col mb-8">
             <legend class="font-bold text-2xl mb-8 mx-auto">Cashout Calculator</legend>
 
@@ -44,8 +44,8 @@
                     <input type="text" name="hostsales" id="hostsales" inputmode="decimal" class="border-2 border-black mb-4 pl-2">
                 </div>
 
-            <!-- Want to save? -->
-            <label for="savecheck" class="text-xl font-semibold mb-1 block">Would you like to save this cashout?</label>
+            <!-- Full cashout? -->
+            <label for="savecheck" class="text-xl font-semibold mb-1 block">Would you like to see your full cashout?</label>
             <input type="checkbox" name="savecheck" id="savecheck" class="block mb-4">
 
             <!-- OPTIONAL - Saved Stats -->
