@@ -12,7 +12,8 @@ $empID = $_GET["empID"];
 $netSales = $_GET["netSales"];
 $foodSales = $_GET["foodSales"];
 $hostSales = $_GET["hostSales"];
-$cash = $_GET["cash"];
+$cashReported = $_GET["cashReported"];
+$cashActual = $_GET["cashActual"];
 $tipsPaid = $_GET["tipsPaid"];
 $staffMeal = $_GET["staffMeal"];
 
@@ -31,25 +32,24 @@ else{
         <h2>Cashout Results - <?php echo $date; ?></h2>
 
 
-        <h3>Host:</h3>
-        <p>
-            <?php 
-            if( isset( $hostSales ) ) {
-                $hostTipout = $hostSales * 0.01;
-                echo( "$$hostSales x 1% = $" . $hostTipout );
-            } 
-            else {
-                $hostTipout = $netSales * 0.01;
-                echo( "$$netSales x 1% = $" . $hostTipout );
-            }
-            
+        <?php
+        if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
             ?>
-        </p>
+            <h3>Host:</h3>
+            <p>
+                <?php 
+                $hostTipout = round($hostSales * 0.01, 2);
+                echo( "$$hostSales x 1% = $" . $hostTipout );   
+                ?>
+            </p>
+            <?php
+        }
+        ?>
 
         <h3>Kitchen:</h3>
         <p>
             <?php
-            $kitchenTipout = $foodSales * 0.05;
+            $kitchenTipout = round($foodSales * 0.05, 2);
             echo( "$$foodSales x 5% = $" . $kitchenTipout );
             ?>
         </p>
@@ -57,7 +57,7 @@ else{
         <h3>Bar:</h3>
         <p>
             <?php
-            $barTipout = $netSales * 0.02;
+            $barTipout = round($netSales * 0.02, 2);
             echo( "$$netSales x 2% = $" . $barTipout );
             ?>
         </p>
@@ -65,8 +65,14 @@ else{
         <h3>Total:</h3>
         <p>
             <?php
-            $totalTipout = $hostTipout + $kitchenTipout + $barTipout;
-            echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $$totalTipout" );
+            if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
+                $totalTipout = $hostTipout + $kitchenTipout + $barTipout;
+                echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $$totalTipout" );
+            }
+            else {
+                $totalTipout = $kitchenTipout + $barTipout;
+                echo( "$$kitchenTipout + $$barTipout = $$totalTipout" );
+            }
             ?>
         </p>
     </div>
@@ -74,8 +80,8 @@ else{
     <div>
         <h2>Final Cashout</h2>
         <?php
-        if( $staffMeal ) {
-            $cash = $cash - $staffMeal;
+        if( is_numeric( $staffMeal ) ) {
+            $cashReported = $cashReported - $staffMeal;
             ?> <p>Note: The staff meal cost has been subtracted from the recorded cash amount.</p> <?php
         }
         ?>

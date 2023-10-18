@@ -23,7 +23,7 @@ $hostSales = $_GET["hostSales"];
             <h3>Host:</h3>
             <p>
                 <?php 
-                $hostTipout = $hostSales * 0.01;
+                $hostTipout = round($hostSales * 0.01, 2);
                 echo( "$$hostSales x 1% = $" . $hostTipout );   
                 ?>
             </p>
@@ -34,7 +34,7 @@ $hostSales = $_GET["hostSales"];
         <h3>Kitchen:</h3>
         <p>
             <?php
-            $kitchenTipout = $foodSales * 0.05;
+            $kitchenTipout = round($foodSales * 0.05, 2);
             echo( "$$foodSales x 5% = $" . $kitchenTipout );
             ?>
         </p>
@@ -42,7 +42,7 @@ $hostSales = $_GET["hostSales"];
         <h3>Bar:</h3>
         <p>
             <?php
-            $barTipout = $netSales * 0.02;
+            $barTipout = round($netSales * 0.02, 2);
             echo( "$$netSales x 2% = $" . $barTipout );
             ?>
         </p>
