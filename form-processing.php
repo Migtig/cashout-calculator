@@ -121,7 +121,7 @@ if( !$cashoutValid ) {
     die();
 }
 
-// Variables: netSales, foodSales, hostSales, tipsPaid, cashReported, cashActual, empID, staffMeal
+// Variables: empID, netSales, foodSales, hostSales, tipsPaid, cashReported, cashActual, staffMeal, netTransfer
 
 // If the Full Cashout box wasn't checked, directs user to results-simple.php for their simple results (Tipout calculation only)
 if( !isset( $_POST["savecheck"] ) ) {

@@ -9,6 +9,8 @@
 </head>
 <body class="h-screen bg-gray-400">
 <?php
+
+// Assigns all $_GET variables to local variables for easier use
 $empID = $_GET["empID"];
 $netSales = $_GET["netSales"];
 $foodSales = $_GET["foodSales"];
@@ -21,6 +23,8 @@ $netTransfer = $_GET["netTransfer"];
 
 $date;
 
+// Gets the date and assigns it to a variable
+// If the time is past midnight, it rolls back the day by one so that the date is still the date that the shift was worked
 if(date("G") > 3) {
     $date = date("m-d-Y");
 }
@@ -35,6 +39,7 @@ else{
 
 
         <?php
+        // If user had a host during their shift, displays host tipout and adds it to the total tipout
         if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
             ?>
             <h3 class="text-xl font-semibold">Host:</h3>
@@ -51,6 +56,7 @@ else{
         <h3 class="text-xl font-semibold">Kitchen:</h3>
         <p class="mb-3 text-lg">
             <?php
+            // Calculates and displays tipout for the Kitchen
             $kitchenTipout = round($foodSales * 0.05, 2);
             echo( "$$foodSales x 5% = $" . $kitchenTipout );
             ?>
@@ -59,6 +65,7 @@ else{
         <h3 class="text-xl font-semibold">Bar:</h3>
         <p class="mb-3 text-lg">
             <?php
+            // Calculates and displays tipout for the Bar
             $barTipout = round($netSales * 0.02, 2);
             echo( "$$netSales x 2% = $" . $barTipout );
             ?>
@@ -67,6 +74,7 @@ else{
         <h3 class="text-xl font-semibold">Total:</h3>
         <p class="mb-3 text-lg">
             <?php
+            // Calculates and displays the total tipout
             if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
                 $totalTipout = $hostTipout + $kitchenTipout + $barTipout;
                 echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $$totalTipout" );
@@ -83,15 +91,21 @@ else{
         <h2 class="text-2xl font-semibold">Final Cashout</h2>
         <?php
 
+        // Calculates the estimated real remit at the end of the shift
+        //       Note: For those without an understanding of restaurant accounting, this is essentially calculating how much the restaurant owes the server for tips
+        //             Or if the server took in more cash than they made in tips paid by card, then how much the server owes the restaurant
         $estRemit = $tipsPaid - ($cashReported + $totalTipout);
 
+        // Subtracts the cost of a staff meal from the reported Cash amount, in order to avoid skewing tip percentage
         if( is_numeric( $staffMeal ) ) {
             $cashReported = $cashReported - $staffMeal;
             ?> <p class="text-sm">Note: The staff meal cost has been subtracted from the reported cash amount.</p> <?php
         }
 
+        // Calculates the total tips that the user made by adding card tips to cash tips, and including the automatic 10% paid on transfers
         $tipsActual = ($tipsPaid - ( round($netTransfer * 0.1, 2) ) ) + ($cashActual - $cashReported);
 
+        // Calculates the final average tip percentage for the shift
         $tipPercentage = round(($tipsPaid / $netSales) * 100, 1);
         
 

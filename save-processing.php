@@ -29,9 +29,11 @@ $cashActual = $_POST["cashActual"];
 $estRemit = $_POST["estRemit"];
 $netTransfer = $_POST["netTransfer"];
 
+// Creates and executes query for inserting collected cashout data into the MySQL database
 $insertQuery = "INSERT INTO cashouts (empid,date,netSales,foodSales,tipout,tipsPaid,tipsActual,tipPercent,cashReported,cashActual,estRemit,netTransfer) VALUES('$empID','$date','$netSales','$foodSales','$tipout','$tipsPaid','$tipsActual','$tipPercent','$cashReported','$cashActual','$estRemit','$netTransfer');";
 $insertResult = $db->query( $insertQuery );
 
+// Checks to see if the POST query worked, then returns user to the start with a corresponding success/error message
 if( $insertResult ) {
     setcookie( "invalidCashout", "Your cashout was successfully added to the database!", time() + 10 );
 } else {
