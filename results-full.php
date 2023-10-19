@@ -90,7 +90,7 @@ else{
             ?> <p class="text-sm">Note: The staff meal cost has been subtracted from the reported cash amount.</p> <?php
         }
 
-        $totalTips = ($tipsPaid - ( round($netTransfer * 0.1, 2) ) ) + ($cashActual - $cashReported);
+        $tipsActual = ($tipsPaid - ( round($netTransfer * 0.1, 2) ) ) + ($cashActual - $cashReported);
 
         $tipPercentage = round(($tipsPaid / $netSales) * 100, 1);
         
@@ -126,8 +126,8 @@ else{
                         <input type="text" name="tipsPaid" id="tipsPaid" value="<?php echo $tipsPaid; ?>" readonly class="ml-auto text-right text-lg">
                     </li>
                     <li class="flex justify-between mb-2">
-                        <label for="totalTips" class="text-lg font-semibold my-auto h-fit">Total Tips: </label>
-                        <input type="text" name="totalTips" id="totalTips" value="<?php echo $totalTips; ?>" readonly class="ml-auto text-right text-lg">
+                        <label for="tipsActual" class="text-lg font-semibold my-auto h-fit">Total Tips: </label>
+                        <input type="text" name="tipsActual" id="tipsActual" value="<?php echo $tipsActual; ?>" readonly class="ml-auto text-right text-lg">
                     </li>
                     <li class="flex justify-between mb-2">
                         <label for="tipPercent" class="text-lg font-semibold my-auto h-fit">Tip %: </label>
