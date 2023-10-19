@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cashout Processing</title>
-    <!-- <link rel="stylesheet" href="styles/output.css"> -->
-</head>
-<body>
-    
 <?php
 // Variable for keeping track of whether the cashout was valid
 $cashoutValid = true;
@@ -144,5 +133,3 @@ if( !isset( $_POST["savecheck"] ) ) {
 header( "location: results-full.php?empID=$empID&netSales=$netSales&foodSales=$foodSales&hostSales=$hostSales&tipsPaid=$tipsPaid&cashReported=$cashReported&cashActual=$cashActual&staffMeal=$staffMeal&netTransfer=$netTransfer" );
 die();
 ?>
-</body>
-</html>

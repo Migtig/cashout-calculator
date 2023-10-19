@@ -52,10 +52,10 @@ $hostSales = $_GET["hostSales"];
         <p class="mb-3 text-lg">
             <?php
             if( isset( $hostSales ) && is_numeric( $hostSales ) ) {
-                echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $" . $hostTipout + $kitchenTipout + $barTipout );
+                echo( "$$hostTipout + $$kitchenTipout + $$barTipout = $" . ( $hostTipout + $kitchenTipout + $barTipout ) );
             }
             else {
-                echo( "$$kitchenTipout + $$barTipout = $" . $kitchenTipout + $barTipout );
+                echo( "$$kitchenTipout + $$barTipout = $" . ( $kitchenTipout + $barTipout ) );
             }
             ?>
         </p>
